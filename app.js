@@ -1,53 +1,38 @@
 const express = require("express"),
-  bodyParser = require("body-parser");
+  bodyParser = require("body-parser"),
+  app = express();
+
+let dbInteractions = require("./database");
 const PORT = 3000;
 
-let todos = [
-  {
-    id: "1",
-    message: "Do groceries",
-    createdAt: Date.now().toString()
-  },
-  {
-    id: "2",
-    message: "Clean room",
-    createdAt: Date.now().toString()
-  },
-  {
-    id: "3",
-    message: "Walk dog",
-    createdAt: Date.now().toString()
-  }
-];
-
-let idNum = todos.length;
-
-const app = express();
 app.use(bodyParser.json());
 
 app.get("/todos", (req, res) => {
+  let todos = dbInteractions.getTodos();
   res.status(200).json(todos);
 });
 
 app.get("/todos/:id", (req, res) => {
-  let todo = todos.filter(todo => todo.id == req.params.id);
+  let todo = dbInteractions.getTodo();
   res.status(200).json(todo);
 });
 
 app.post("/todos", (req, res) => {
-  idNum++;
-  let newTodo = {
-    id: idNum,
-    message: req.body.message,
-    createdAt: Date.now().toString()
-  };
-  todos.push(newTodo);
+  let newTodo = dbInteractions.createTodo(req.body.message);
   res.status(200).json(newTodo);
 });
 
-app.put("/todos/:id", (req, res) => {});
+app.put("/todos/:id", (req, res) => {
+  let updatedTodo = dbInteractions.updateTodo(req.params.id, req.body.message);
+  res.status(200).json(updatedTodo);
+});
 
-app.delete("/todos/:id");
+app.delete("/todos/:id", (req, res) => {
+  let result = dbInteractions.deleteTodo(req.params.id);
+  res.status(200).json({
+    success: result
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}!`);
