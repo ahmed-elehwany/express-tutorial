@@ -1,8 +1,11 @@
 // Importing necessary packages + necessary boilerplate
 const express = require("express"),
   bodyParser = require("body-parser"),
+  cors = require("cors"),
   app = express();
 app.use(bodyParser.json());
+app.use(cors())
+
 let dbInteractions = require("./database");
 const PORT = 3000;
 
