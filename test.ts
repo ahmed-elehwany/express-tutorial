@@ -1,13 +1,13 @@
 // test.js
 // Import requirement packages
-require('chromedriver');
+//require('chromedriver');
 const assert = require('assert');
-const {Builder, Key, By, until} = require('selenium-webdriver');
+//const {Builder, Key, By, until} = require('selenium-webdriver');
 describe('Checkout Google.com', function () {
-    let driver;
-    before(async function() {
-        driver = await new Builder().forBrowser('chrome').build();
-    });
+ //   let driver;
+    // before(async function() {
+    //     driver = await new Builder().forBrowser('chrome').build();
+    // });
     // Next, we will write steps for our test. 
     // For the element ID, you can find it by open the browser inspect feature.
     it('Search on Google', async function() {
@@ -26,5 +26,5 @@ describe('Checkout Google.com', function () {
         assert.equal(2, actual);
     });
     // close the browser after running tests
-    after(() => driver && driver.quit());
+ //   after(() => driver && driver.quit());
 })
