@@ -9,7 +9,6 @@
   },
   "author": "Valerian Clerc",
   "license": "MIT",
-
   "devDependencies": {
     "@babel/preset-typescript": "^7.3.3",
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
@@ -33,8 +32,8 @@
     "nyc": "^14.1.1",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.1.0"
-},
-"dependencies": {
+  },
+  "dependencies": {
     "body-parser": "^1.19.0",
     "axios": "^0.18.1",
     "bcryptjs": "^2.4.3",
@@ -47,5 +46,5 @@
     "swagger-ui-express": "^4.0.2",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
-}
+  }
 }
